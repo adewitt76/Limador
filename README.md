@@ -1,5 +1,4 @@
 # Limador
----
 Limador (an acronym for Linux Mark Down Reader) is a basic mark down reader for linux. 
 It uses the Linux kernel to watch changes on a mark down file and then parses the file 
 for display. It is meant to allow for the development of .md files with your favorite 
