@@ -1,0 +1,29 @@
+{
+  "name": "limador",
+  "version": "0.0.1",
+  "description": "A mark-down viewer for linux",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adewitt76/Limador.git"
+  },
+  "keywords": [
+    "mark",
+    "down",
+    "viewer",
+    "linux"
+  ],
+  "author": "Aaron DeWitt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adewitt76/Limador/issues"
+  },
+  "homepage": "https://github.com/adewitt76/Limador#readme",
+  "devDependencies": {
+    "electron": "^23.1.2"
+  }
+}
