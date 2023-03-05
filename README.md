@@ -5,3 +5,6 @@ for display. It is meant to allow for the development of .md files with your fav
 text editor and see the file as if it where to go out to a webpage like GitHub. Also, 
 it can be a used to view your notes with out opening your editor.
 
+## How to build and run
+  - npm run build
+  - npm start
