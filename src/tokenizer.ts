@@ -1,54 +1,47 @@
-const ALLOWED_CHARS = /[a-zA-Z0-9\/.:]/i;
+const ALPHA_NUM_CHARS = /\w/;
+const SYMBOL_CHARS = /\W/;
 const WHITESPACE = /\s/;
 
 export class Tokenizer {
   static tokenize(input: string): unknown[] {
     const tokens: unknown[] = []
     let current = 0;
+    const pushToken = (type: string, value: string) => {
+      tokens.push({ type, value });
+      current++;
+    }
+
     while (current < input.length) {
       let chr = input[current];
-      if (chr === '-') {
-        tokens.push({
-          type: 'hyphen',
-          value: '-'
-        });
-        current++;
-        continue;
-      }
-      if (chr === '[' || chr === ']') {
-        tokens.push({
-          type: 'bracket',
-          value: chr
-        });
-        current++;
-        continue;
-      }
-      if (chr === '(' || chr === ')') {
-        tokens.push({
-          type: 'paren',
-          value: chr
-        });
-        current++;
-        continue;
-      }
-      if (ALLOWED_CHARS.test(chr)) {
-        let value = '';
-        while (ALLOWED_CHARS.test(chr)) {
-          value += chr;
-          chr = input[++current];
-        }
-        tokens.push({
-          type: 'word',
-          value
-        });
+      // escaped characters must come first
+      // TODO: consider \t
+      if (chr === '\n' || chr === '\r') {
+        pushToken('CR', '\n');
         continue;
       }
       if (WHITESPACE.test(chr)) {
         current++;
         continue;
       }
+      if (SYMBOL_CHARS.test(chr)) {
+        pushToken('Symbol', chr);
+        continue;
+      }
+      if (ALPHA_NUM_CHARS.test(chr)) {
+        let value = '';
+        while (ALPHA_NUM_CHARS.test(chr)) {
+          value += chr;
+          chr = input[++current];
+        }
+        tokens.push({
+          type: 'Word',
+          value
+        });
+        continue;
+      }
       throw new TypeError(`Unknown char: '${chr}'`);
     }
+
     return tokens;
   }
 }
