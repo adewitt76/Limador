@@ -1,8 +1,8 @@
-import { app } from 'electron';
-import { compileMdToHTML } from './compiler';
 import * as fs  from 'fs';
 import * as path from 'path';
 import { Stats } from 'original-fs';
+import { app } from 'electron';
+import { mdToHTML } from './compiler';
 
 const note_path ='/home/aaron/NoteBook/project-ideas/markdown-viewer.md';
 console.info('Path:');
@@ -44,7 +44,7 @@ fs.readFile(note_path, 'utf8', (err, data) => {
     return;
   }
   console.log(data);
-  compileMdToHTML(data);
+  mdToHTML(data);
 });
 
 
